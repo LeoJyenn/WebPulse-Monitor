@@ -1,0 +1,135 @@
+/* 全局样式 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    background-color: #f8f9fa; /* 淡灰色背景，与Bootstrap的 .bg-light 类似 */
+    color: #212529; /* Bootstrap 默认文本颜色 */
+    padding-top: 56px; /* 为固定的导航栏留出空间 (Bootstrap navbar 默认高度约56px) */
+}
+
+/* 容器增强 - 确保内容区域与导航栏和页脚有合适的间距 */
+.container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+/* 导航栏自定义 */
+.navbar-brand {
+    font-weight: 600; /* 品牌名称加粗一些 */
+}
+
+.navbar .nav-link {
+    transition: color 0.15s ease-in-out; /* 平滑的颜色过渡 */
+}
+
+/* 主内容区域标题 */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem; /* 从导航栏下方开始 */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #dee2e6; /* Bootstrap .border-bottom */
+}
+
+.page-header h1, .page-header h2 {
+    margin-bottom: 0; /* 移除Bootstrap标题的默认下边距 */
+}
+
+/* 表格样式增强 */
+.table th {
+    font-weight: 600; /* 表头加粗 */
+}
+
+.table td a {
+    text-decoration: none; /* 移除表格内链接的下划线，悬停时显示 */
+}
+.table td a:hover {
+    text_decoration: underline;
+}
+
+/* 状态指示徽章 (Badge) */
+.badge.bg-success { /* UP */
+    /* 默认Bootstrap样式已足够 */
+}
+.badge.bg-danger { /* DOWN */
+}
+.badge.bg-warning.text-dark { /* ERROR */
+    /* Bootstrap 默认的 text-dark 可能不够突出，可以按需调整 */
+}
+.badge.bg-secondary { /* PENDING 或其他未知状态 */
+}
+
+/* 表单元素 */
+.form-control:focus {
+    /* 默认Bootstrap的焦点样式已很好，这里可以按需覆盖 */
+}
+
+.invalid-feedback {
+    /* 默认Bootstrap样式 */
+}
+.invalid-feedback span { /* 如果错误消息有多行，确保每行都显示 */
+    display: block;
+}
+
+/* 卡片 (Card) 样式增强 */
+.card {
+    margin-bottom: 1.5rem; /* 卡片间距 */
+}
+.card-header {
+    font-weight: 500; /* 卡片头部文字稍加粗 */
+}
+
+/* Flash 消息（如果使用 Bootstrap 的 alert 组件，其样式已足够）*/
+.alert {
+    /* 确保alert组件在固定导航栏下方正确显示 */
+    /* 如果需要，可以添加 margin-top */
+}
+
+/* 分页导航 */
+.pagination .page-link {
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+/* 页脚 */
+.footer {
+    font-size: 0.9em;
+    color: #6c757d; /* Bootstrap .text-muted */
+    background-color: #f8f9fa; /* 与页面背景色一致或稍深 */
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-top: 1px solid #dee2e6; /* Bootstrap .border-top */
+}
+
+/* 辅助类 */
+.text-truncate-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* 需要父元素有宽度限制才能生效 */
+}
+
+/* 表格内按钮组的间距调整 */
+.table .btn-group .btn {
+    margin-right: 0.25rem; /* 给按钮之间加一点点空隙 */
+}
+.table .btn-group .btn:last-child {
+    margin-right: 0;
+}
+
+/* SVG 图标大小统一 (如果直接在HTML中内联SVG) */
+.navbar .bi,
+.btn .bi { /* 假设图标类名为bi */
+    vertical-align: -0.125em; /* 微调图标垂直对齐 */
+    /* width: 1em; */ /* 可以设置统一大小 */
+    /* height: 1em; */
+}
+
+/* 响应式调整 (如果需要) */
+/* 例如，在小屏幕上调整某些元素的边距或字体大小 */
+/* @media (max-width: 768px) { */
+/* .page-header h1, .page-header h2 { */
+/* font-size: 1.5rem; */
+/* } */
+/* } */
