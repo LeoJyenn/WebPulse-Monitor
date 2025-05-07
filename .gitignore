@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+venv/
+*.env
+instance/
+.webassets-cache/
+
+# SQLite - 如果你的数据库文件直接在项目根目录或特定位置，且不想提交它
+# 如果数据库在 instance/ 文件夹下，上面的 instance/ 已经包含了它
+# *.sqlite3
+# *.db
+# *.db-journal
+
+# IDEs and editors specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+nbproject/ # Netbeans
+*.DS_Store # macOS
+
+# Flask specific
+.webassets-cache # For Flask-Assets
+
+# Operating System files
+Thumbs.db # Windows thumbnail cache
+ehthumbs.db # Windows thumbnail cache
+
+# Log files
+*.log
+logs/
+
+# Coverage reports
+.coverage
+coverage.*
+htmlcov/
