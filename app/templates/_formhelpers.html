@@ -1,0 +1,59 @@
+{# 这是一个可选的辅助文件，用于定义Jinja2宏来帮助渲染WTForms表单字段。#}
+{# 如果你选择使用它，你需要在你的表单模板中导入并调用这些宏。#}
+{# 例如，在 add_target.html 的顶部添加: {% from "_formhelpers.html" import render_field, render_form_errors with context %} #}
+{# 然后在表单中用 {{ render_field(form.field_name) }} 来渲染字段。#}
+{# 当前的 add_target.html 模板没有使用这个宏，而是直接渲染的，为了让步骤更直接。#}
+{# 但提供这个文件是为了展示一种更模块化的表单渲染方式。#}
+
+{% macro render_field_with_label(field, label_visible=True, **kwargs) %}
+    <div class="mb-3">
+        {% if label_visible and field.label %}
+            {{ field.label(class="form-label") }}
+        {% endif %}
+        
+        {{ field(class="form-control" + (" is-invalid" if field.errors else ""), **kwargs) }}
+        
+        {% if field.errors %}
+            <div class="invalid-feedback">
+                {% for error in field.errors %}
+                    <span>{{ error }}</span><br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% if field.description %}
+            <small class="form-text text-muted">{{ field.description }}</small>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro render_checkbox_field(field, **kwargs) %}
+    <div class="mb-3 form-check">
+        {{ field(class="form-check-input" + (" is-invalid" if field.errors else ""), **kwargs) }}
+        {{ field.label(class="form-check-label") }}
+        {% if field.errors %}
+            <div class="invalid-feedback d-block"> {# d-block needed for checkbox errors #}
+                {% for error in field.errors %}
+                    <span>{{ error }}</span><br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro render_submit_field(field, **kwargs) %}
+    {{ field(class="btn btn-primary " + kwargs.pop('class', ''), **kwargs) }}
+{% endmacro %}
+
+{% macro render_form_errors(form) %}
+    {% if form.errors and form.errors.get('form', None) %} {# 'form' is a common key for non-field errors #}
+        <div class="alert alert-danger" role="alert">
+            <strong>表单提交错误:</strong>
+            <ul>
+                {% for error in form.errors['form'] %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endmacro %}
