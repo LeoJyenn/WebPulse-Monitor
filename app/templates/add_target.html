@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}添加监控目标 - WebPulse Monitor{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0">添加新的监控目标</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('main.add_target') }}" novalidate>
+                    {{ form.hidden_tag() }} {# CSRF token for Flask-WTF #}
+                    
+                    <div class="mb-3">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control" + (" is-invalid" if form.name.errors else ""), size=50) }}
+                        {% if form.name.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.name.errors %}
+                                    <span>{{ error }}</span><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.url.label(class="form-label") }}
+                        {{ form.url(class="form-control" + (" is-invalid" if form.url.errors else ""), size=50, placeholder="例如: https://www.example.com") }}
+                        {% if form.url.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.url.errors %}
+                                    <span>{{ error }}</span><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.check_interval_seconds.label(class="form-label") }}
+                        <div class="input-group">
+                            {{ form.check_interval_seconds(class="form-control" + (" is-invalid" if form.check_interval_seconds.errors else ""), style="max-width: 150px;") }}
+                            <span class="input-group-text">秒</span>
+                        </div>
+                        <small class="form-text text-muted">建议范围: 30 - 86400 秒 (24小时)。默认300秒 (5分钟)。</small>
+                        {% if form.check_interval_seconds.errors %}
+                            <div class="invalid-feedback d-block"> {# d-block for proper display below input-group #}
+                                {% for error in form.check_interval_seconds.errors %}
+                                    <span>{{ error }}</span><br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        {{ form.is_active(class="form-check-input") }}
+                        {{ form.is_active.label(class="form-check-label") }}
+                    </div>
+                    
+                    <hr class="my-4">
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('main.index') }}" class="btn btn-outline-secondary me-md-2">取消</a>
+                        {{ form.submit(class="btn btn-primary") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
